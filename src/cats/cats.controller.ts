@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { CreateCatDto } from './cats.interface';
+import { CatUpdate, CreateCatDto, ICat } from './cats.interface';
 import { CatsService } from './cats.service';
 
 @Controller('gatos')
@@ -20,18 +20,18 @@ export class CatsController {
     }
 
     @Get(":id")
-    public async getCatById(@Param() id: string) {
-        return this.getCatById(id);
+    public async getCatById(@Param("id") id: string) {
+        return this.catService.getCatById(id);
     }
 
     @Put(":id")
-    public async updateCatById(@Param() id: string, cat: CreateCatDto) {
-        return this.updateCatById(id, cat);
+    public async updateCatById(@Param() id: string, @Body() cat: CatUpdate) {
+        return this.catService.updateCat(id, cat);
     }
 
     @Delete(":id") 
-    public async deleteCat(@Param() id: string) {
-        return this.deleteCat(id);
+    public async deleteCat(@Param("id") id: string) {
+        return this.catService.deleteCat(id);
     }
 }
 

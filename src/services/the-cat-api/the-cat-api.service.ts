@@ -43,8 +43,8 @@ export class TheCatApiService {
             page
         };
         
-        const $response = this.baseService.get<ICatFavorite>(url, { params, headers: this.headers });
-        const response = await lastValueFrom<ICatFavorite>($response);
+        const $response = this.baseService.get<ICatFavorite[]>(url, { params, headers: this.headers });
+        const response = await lastValueFrom<ICatFavorite[]>($response);
         return response;
     }
 

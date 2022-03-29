@@ -15,3 +15,5 @@ export interface CreateCatDto {
 export interface Cat extends CreateCatDto {
     id: string;
 }
+
+export type CatUpdate = Omit<Cat, "id">;

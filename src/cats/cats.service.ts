@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Cat, CatDocument } from "./schemas/cat.schema";
-import { CreateCatDto, Cat as ICat } from './cats.interface';
+import { CreateCatDto, Cat as ICat, CatUpdate } from './cats.interface';
 
 @Injectable()
 export class CatsService {
@@ -23,7 +23,7 @@ export class CatsService {
         return this.catModel.findById(id).exec().then(this.mapperResponse);
     }
 
-    public async updateCat(id: string, cat: ICat): Promise<void> {
+    public async updateCat(id: string, cat: CatUpdate): Promise<void> {
         return this.catModel.findByIdAndUpdate(id, cat);
     }
 
